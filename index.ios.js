@@ -1,21 +1,24 @@
-# React-Native Highcharts
+/**
+* Sample React Native App
+* https://github.com/facebook/react-native
+* @flow
+*/
 
-This is a react-native component for IOS and Android that uses [Highcharts](http://www.highcharts.com) where you send the configuration as a prop and the chart is rendered within a WebView
+import React, { Component } from 'react';
+import {
+   AppRegistry,
+   StyleSheet,
+   Text,
+   View
+} from 'react-native';
+import ChartView from './App/index.js';
 
-## Getting Started
-```bat
-npm install react-native-highcharts-wrapper2 --save
-```
-## Demo
-![](http://i.giphy.com/l3vRdWwXin1ooLCHS.gif)
+export default class chartWebView extends Component {
 
-## Basic example
-**REMEMBER**  to declare the variable Highcharts='Highcharts'
-
-```javascript
-import ChartView from 'react-native-highcharts-wrapper2';
-...
-render() {
+   constructor(props){
+    super(props);
+  }
+    render() {
     var Highcharts='Highcharts';
     var conf={
             chart: {
@@ -83,45 +86,9 @@ render() {
                 }())
             }]
         };
-
-    const options = {
-        global: {
-            useUTC: false
-        },
-        lang: {
-            decimalPoint: ',',
-            thousandsSep: '.'
-        }
-    };
-
     return (
-      <ChartView style={{height:300}} config={conf} options={options}></ChartView>
+      <ChartView style={{flex:1}} config={conf} stock={false}></ChartView>
     );
+  }
 }
-```
-
-## Props
-| Prop          | Required      | Description  |
-| ------------- |:-------------:| ------------:|
-| config        | true          | Highcharts configuration [See the docs.>>](http://www.highcharts.com/docs/getting-started/your-first-chart)  |
-| stock     | false      |   Default false; use Highstock |
-| more     | false      |   Default false; use Highstock-more |
-| heatMap   | false | Default false; use HeatMap |
-| style | false      |   Style object to be passed onto the WebView |
-| options | false      |   Pass global and lang options from Highcharts |
-| guage | false      |   Import gauge library from highcharts |
-
-
-props added to WebView
-
-## NOTE
-if not rendering in real device add this two props to the component
-```javascript
-javaScriptEnabled={true}
-domStorageEnabled={true}
-```
-
-## Stuff used to make this:
-
- * [Highcharts](http://www.highcharts.com/) for making the chart
-
+AppRegistry.registerComponent('chartWebView', () => chartWebView);
